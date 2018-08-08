@@ -32,8 +32,7 @@ class ViewController: UIViewController {
     @IBAction func showAlert() {
         let difference = abs(currentValue - targetValue)
         var points = 100 - difference
-        
-        score += points
+
         round += 1
         
         let title: String
@@ -51,20 +50,21 @@ class ViewController: UIViewController {
             title = "Not even close..."
         }
 
+        score += points
+
         let message = "You scored \(points) points"
         
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "OK",
-                                   style: .default,
-                                   handler: nil)
+        let action = UIAlertAction(title: "OK", style: .default, handler: {
+            action in
+            self.startNewRound()
+        })
         
         alert.addAction(action)
-        present(alert, animated: true, completion: nil)
-        
-        startNewRound()
+        present(alert, animated: true, completion: nil)  // this is non blocking
     }
     
     @IBAction func sliderMoved(_ slider: UISlider) {
