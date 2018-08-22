@@ -52,8 +52,8 @@ class ViewController: UIViewController {
         let difference = abs(currentValue - targetValue)
         var points = 100 - difference
 
-        round += 1
-        
+        score += points
+
         let title: String
         if difference == 0 {
             title = "Perfect!"
@@ -69,7 +69,6 @@ class ViewController: UIViewController {
             title = "Not even close..."
         }
 
-        score += points
 
         let message = "You scored \(points) points"
         
@@ -97,6 +96,7 @@ class ViewController: UIViewController {
     }
     
     func startNewRound() {
+        round += 1
         targetValue = 1 + Int(arc4random_uniform(100))
         currentValue = 50
         slider.value = Float(currentValue)
