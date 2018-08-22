@@ -17,11 +17,15 @@ class ViewController: UIViewController {
     var currentValue = 0
     var targetValue = 0
     var score = 0
-    var round = 1
+    var round = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        customizeSlider()
+        startNewGame()
+    }
+    
+    func customizeSlider() {
         let thumbImageNormal = UIImage(named: "SliderThumb-Normal")!
         slider.setThumbImage(thumbImageNormal, for: .normal)
         
@@ -37,8 +41,6 @@ class ViewController: UIViewController {
         let trackRightImage = UIImage(named: "SliderTrackRight")!
         let trackRightResizable = trackRightImage.resizableImage(withCapInsets: insets)
         slider.setMaximumTrackImage(trackRightResizable, for: .normal)
-        
-        startNewRound()
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,6 +88,12 @@ class ViewController: UIViewController {
     
     @IBAction func sliderMoved(_ slider: UISlider) {
         currentValue = lroundf(slider.value)
+    }
+    
+    @IBAction func startNewGame() {
+        score = 0
+        round = 0
+        startNewRound()
     }
     
     func startNewRound() {
